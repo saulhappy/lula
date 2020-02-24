@@ -19,7 +19,12 @@ router.get("/", (req, res) => {
 // @access Public
 router.post("/", (req, res) => {
   const newUser = new User({
-    email: req.body.email
+    email: req.body.email,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    full_address: req.body.full_address,
+    phone: req.body.phone,
+    pic_link: req.body.pic_link
   });
   newUser.save().then(user => res.json(user));
 });
