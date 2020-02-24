@@ -1,5 +1,4 @@
 const express = require("express");
-// const cors = require("cors");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -15,8 +14,7 @@ mongoose
     useUnifiedTopology: true
   })
   .then(() => console.log("MongoDB Connected..."))
-  .catch(err => console.log(err));
+  .catch(error => console.log(error));
 
 const port = process.env.PORT || 5000;
-
 app.listen(port, () => console.log(`Server started on port ${port}`));
