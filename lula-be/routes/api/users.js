@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 });
 
 // @route POST api/users
-// @desc Create a POST
+// @desc Create a user
 // @access Public
 router.post("/", (req, res) => {
   const newUser = new User({
@@ -27,6 +27,19 @@ router.post("/", (req, res) => {
     pic_link: req.body.pic_link
   });
   newUser.save().then(user => res.json(user));
+});
+
+// @route DELETE api/users/:id
+// @desc DELETE specific user
+// @access Public
+router.delete("/:id", (req, res) => {
+  User.findById(req.params.id)
+    .then(user =>
+      user.remove().then(() => res.json({ success: "user deleted" }))
+    )
+    .catch(err =>
+      res.status(404).json({ success: "user could not be deleted" })
+    );
 });
 
 module.exports = router;
